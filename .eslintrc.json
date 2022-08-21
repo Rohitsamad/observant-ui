@@ -17,5 +17,12 @@
         "react"
     ],
     "rules": {
+        "no-console": 1,
+        "no-underscore-dangle": 0,
+        "indent": [
+            "error",
+            2
+        ],
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
     }
 }
