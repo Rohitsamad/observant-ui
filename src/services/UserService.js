@@ -44,12 +44,9 @@ const logout = async () => {
   await signOut(auth);
 };
 
-const loginStatus = async () => {
+const loginStatus = async (cb) => {
   onAuthStateChanged(auth, (user) => {
-    if (user) {
-      return true;
-    }
-    return false;
+    cb(user);
   });
 };
 
