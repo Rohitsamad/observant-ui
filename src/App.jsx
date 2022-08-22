@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import UserService from './services/UserService';
 
@@ -6,10 +6,14 @@ import './App.css';
 
 function App() {
   const [authUser, setAuthUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  UserService.loginStatus((user) => {
-    if (user) setAuthUser(user);
-  });
+  useEffect(() => {
+    UserService.authStatus((user) => {
+      setAuthUser(user);
+      setLoading(false);
+    });
+  }, []);
 
   const handleLogout = async (e) => {
     e.preventDefault();
@@ -17,13 +21,19 @@ function App() {
     setAuthUser(null);
   };
 
+  if (loading) return <div>Loading..</div>;
+
   return (
     <div>
       {
         authUser
           ? (
             <div>
-              <p>Welcome to observant</p>
+              <p>
+                Welcome
+                {' '}
+                {authUser.email}
+              </p>
               <br />
               <button type="button" onClick={handleLogout}>Logout</button>
             </div>

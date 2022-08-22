@@ -1,11 +1,16 @@
+import { useNavigate } from 'react-router-dom';
+
 import UserService from '../../services/UserService';
 
 function Login() {
+  const navigate = useNavigate();
+
   const handleLogin = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    await UserService.login(email, password);
+    const result = await UserService.login(email, password);
+    if (result) navigate('/');
   };
 
   return (
