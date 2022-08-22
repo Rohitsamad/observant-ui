@@ -8,7 +8,7 @@ import {
   signOut,
 } from 'firebase/auth';
 
-import firebaseConfig from '../firebaseConfig';
+import firebaseConfig from '../config/firebase';
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -42,9 +42,12 @@ const authStatus = async (cb) => {
   });
 };
 
+const getUser = () => auth.currentUser;
+
 export default {
   login,
   signUp,
   logout,
   authStatus,
+  getUser,
 };
