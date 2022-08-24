@@ -6,6 +6,8 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  setPersistence,
+  browserSessionPersistence,
 } from 'firebase/auth';
 
 import firebaseConfig from '../config/firebase';
@@ -14,8 +16,11 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 connectAuthEmulator(auth, 'http://localhost:9099');
 
-const login = async (email, password) => {
+const login = async (email, password, remember) => {
   try {
+    if (!remember) {
+      await setPersistence(auth, browserSessionPersistence);
+    }
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     return userCredential;
   } catch (error) {

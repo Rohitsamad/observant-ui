@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+
+:root {
+  --primary-color: #ff9c1c;
+  --primary-font: 'Pacifico', cursive;
+  --primary-bg: #767676;
+  --secondary-bg: #ffffff;
+  --accent: #6ab3ab;
+}
+
+body {
+  background-color: var(--primary-bg) !important;
+  font-family: 'Work Sans', sans-serif !important;
+  color: #474747 !important;
+}
+
+.title-name {
+  color: var(--primary-color);
+  font-family: var(--primary-font);
+  font-size: 2rem;
+}

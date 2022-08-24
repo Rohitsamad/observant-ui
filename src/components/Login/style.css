@@ -1,0 +1,44 @@
+.auth-container {
+  background-color: var(--secondary-bg);
+  position: fixed;
+  width: 55%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 11px;
+  font-size: var(--chakra-fontSizes-sm);
+}
+
+.artwork {
+  background-color: var(--accent);
+  border-radius: 9px 0 0 9px;
+}
+
+.credentials {
+  border-radius: 0 9px 9px 0;
+}
+
+.title-name {
+  margin-bottom: 69px;
+}
+
+.credentials-form {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  margin: 5px 0;
+  color: teal;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  box-shadow: 0 0 0 30px white inset !important;
+}

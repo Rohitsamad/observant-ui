@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { Button } from '@chakra-ui/react';
 
 import UserService from '../../services/UserService';
 
@@ -20,8 +21,7 @@ function Dashboard() {
         {' '}
         {email}
       </p>
-      <br />
-      <button type="button" onClick={handleLogout}>Logout</button>
+      <Button onClick={handleLogout}>Logout</Button>
     </div>
   );
 }
