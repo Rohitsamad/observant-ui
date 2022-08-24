@@ -1,12 +1,13 @@
 .auth-container {
   background-color: var(--secondary-bg);
   position: fixed;
-  width: 55%;
+  width: 900px;
+  height: 500px;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   border-radius: 11px;
-  font-size: var(--chakra-fontSizes-sm);
+  font-size: var(--sm-text);
 }
 
 .artwork {
@@ -28,11 +29,6 @@
   width: 85%;
   gap: 10px;
   margin-bottom: 20px;
-}
-
-.btn {
-  margin: 5px 0;
-  color: teal;
 }
 
 input:-webkit-autofill,

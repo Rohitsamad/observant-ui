@@ -7,8 +7,7 @@ import {
 
 import Dashboard from './components/Dashboard';
 import Landing from './components/Landing';
-import Login from './components/Login';
-import SignUp from './components/SignUp';
+import AuthUI from './components/AuthUI';
 
 function App() {
   return (
@@ -16,8 +15,8 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Landing />} />
         <Route path="dashboard" element={<Dashboard />} />
-        <Route path="login" element={<Login />} />
-        <Route path="signup" element={<SignUp />} />
+        <Route path="login" element={<AuthUI newAuth={false} />} />
+        <Route path="signup" element={<AuthUI newAuth />} />
       </Routes>
     </BrowserRouter>
   );
