@@ -7,7 +7,7 @@ import {
 
 import Dashboard from './components/Dashboard';
 import Landing from './components/Landing';
-import AuthUI from './components/AuthUI';
+import Authenticate from './components/Authenticate';
 
 function App() {
   return (
@@ -15,8 +15,9 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Landing />} />
         <Route path="dashboard" element={<Dashboard />} />
-        <Route path="login" element={<AuthUI renderPage="login" />} />
-        <Route path="signup" element={<AuthUI renderPage="signup" />} />
+        <Route path="login" element={<Authenticate renderPage="login" />} />
+        <Route path="signup" element={<Authenticate renderPage="signup" />} />
+        <Route path="reset" element={<Authenticate renderPage="reset" />} />
       </Routes>
     </BrowserRouter>
   );

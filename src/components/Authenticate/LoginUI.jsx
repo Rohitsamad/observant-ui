@@ -8,10 +8,9 @@ import {
 import UserService from '../../services/UserService';
 
 function LoginUI(props) {
-  const [exit, setExit] = useState(false);
-  const { pushPage } = props;
   let remember = false;
-
+  const { pushPage } = props;
+  const [exit, setExit] = useState();
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -24,7 +23,12 @@ function LoginUI(props) {
 
   const gotoSignUp = async (e) => {
     e.preventDefault();
-    setExit(true);
+    setExit('signup');
+  };
+
+  const gotoReset = async (e) => {
+    e.preventDefault();
+    setExit('reset');
   };
 
   const onCheck = async (e) => {
@@ -35,8 +39,8 @@ function LoginUI(props) {
   useEffect(() => {
     if (exit) {
       setTimeout(() => {
-        pushPage('signup');
-        navigate('/signup');
+        pushPage(exit);
+        navigate(`/${exit}`);
       }, 690);
     }
   }, [exit]);
@@ -49,7 +53,7 @@ function LoginUI(props) {
         <Checkbox id="remember" size="sm" colorScheme="orange" onChange={onCheck}>Remember me</Checkbox>
         <Button className="btn-primary" width="100%" type="submit">Login</Button>
       </form>
-      <button className="btn-text" type="button">Forgot password?</button>
+      <button className="btn-text" type="button" onClick={gotoReset}>Forgot password?</button>
       <p>
         Need an account?
         {' '}

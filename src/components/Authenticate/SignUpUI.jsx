@@ -6,8 +6,8 @@ import { Button, Input, Flex } from '@chakra-ui/react';
 import UserService from '../../services/UserService';
 
 function SignUpUI(props) {
-  const [exit, setExit] = useState(false);
   const { pushPage } = props;
+  const [exit, setExit] = useState(false);
   const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
@@ -21,14 +21,14 @@ function SignUpUI(props) {
 
   const gotoLogin = async (e) => {
     e.preventDefault();
-    setExit(true);
+    setExit('login');
   };
 
   useEffect(() => {
     if (exit) {
       setTimeout(() => {
-        pushPage('login');
-        navigate('/login');
+        pushPage(exit);
+        navigate(`/${exit}`);
       }, 690);
     }
   }, [exit]);

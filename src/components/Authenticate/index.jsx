@@ -6,9 +6,10 @@ import {
 
 import LoginUI from './LoginUI';
 import SignUpUI from './SignUpUI';
+import ResetUI from './ResetUI';
 import './style.css';
 
-function AuthUI(props) {
+function Authenticate(props) {
   const { renderPage } = props;
   const [page, setPage] = useState([renderPage]);
 
@@ -29,12 +30,14 @@ function AuthUI(props) {
       </Container>
       <Container className="credentials" p="50px" maxW="100%" centerContent>
         <h1 className="title-name">Honeyfilter</h1>
-        <Container overflow="hidden">
+        <Container overflow="hidden" h="100%">
           {
             page && page.map((pageName) => (
-              pageName === 'login'
-                ? <LoginUI key="login" pushPage={pushPage} />
-                : pageName === 'signup' && <SignUpUI key="signup" pushPage={pushPage} />
+              {
+                login: <LoginUI key="login" pushPage={pushPage} />,
+                signup: <SignUpUI key="signup" pushPage={pushPage} />,
+                reset: <ResetUI key="reset" pushPage={pushPage} />,
+              }[pageName]
             ))
           }
         </Container>
@@ -42,8 +45,8 @@ function AuthUI(props) {
     </Flex>
   );
 }
-AuthUI.propTypes = {
+Authenticate.propTypes = {
   renderPage: PropTypes.string.isRequired,
 };
 
-export default AuthUI;
+export default Authenticate;
