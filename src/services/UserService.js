@@ -8,6 +8,7 @@ import {
   signOut,
   setPersistence,
   browserSessionPersistence,
+  sendPasswordResetEmail,
 } from 'firebase/auth';
 
 import firebaseConfig from '../config/firebase';
@@ -41,6 +42,15 @@ const logout = async () => {
   await signOut(auth);
 };
 
+const reset = async (email) => {
+  try {
+    await sendPasswordResetEmail(auth, email);
+    return true;
+  } catch (error) {
+    return null;
+  }
+};
+
 const authStatus = async (cb) => {
   onAuthStateChanged(auth, (user) => {
     cb(user);
@@ -53,6 +63,7 @@ export default {
   login,
   signUp,
   logout,
+  reset,
   authStatus,
   getUser,
 };

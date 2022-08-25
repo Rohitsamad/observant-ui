@@ -12,6 +12,7 @@ import './style.css';
 function Authenticate(props) {
   const { renderPage } = props;
   const [page, setPage] = useState([renderPage]);
+  const [swipe, setSwipe] = useState(false);
 
   const pushPage = ((newPage) => {
     setPage([newPage, ...page]);
@@ -19,6 +20,7 @@ function Authenticate(props) {
 
   useEffect(() => {
     if (page.length > 1) {
+      if (page[1] === 'reset') setSwipe(true);
       setPage(page.slice(0, 1));
     }
   });
@@ -30,11 +32,11 @@ function Authenticate(props) {
       </Container>
       <Container className="credentials" p="50px" maxW="100%" centerContent>
         <h1 className="title-name">Honeyfilter</h1>
-        <Container overflow="hidden" h="100%">
+        <Container overflow="hidden" h="100%" centerContent>
           {
             page && page.map((pageName) => (
               {
-                login: <LoginUI key="login" pushPage={pushPage} />,
+                login: <LoginUI key="login" pushPage={pushPage} swipe={swipe} />,
                 signup: <SignUpUI key="signup" pushPage={pushPage} />,
                 reset: <ResetUI key="reset" pushPage={pushPage} />,
               }[pageName]

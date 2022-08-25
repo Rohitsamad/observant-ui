@@ -3,10 +3,11 @@
 
 :root {
   --primary-color: #ff9c1c;
+  --secondary-color: #b98b3b;
   --primary-font: 'Pacifico', cursive;
   --primary-bg: #767676;
   --secondary-bg: #ffffff;
-  --accent: #6ab3ab;
+  --accent: #8aba9c;
 
   --sm-text: 0.875rem;
 }
@@ -33,5 +34,10 @@ body {
 
 .btn-text {
   margin: 5px 0;
-  color: teal;
+  color: var(--secondary-color);
+}
+
+.btn-text:hover {
+  margin: 5px 0;
+  color: var(--primary-color);
 }

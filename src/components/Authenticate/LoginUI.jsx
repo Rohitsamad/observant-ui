@@ -9,7 +9,7 @@ import UserService from '../../services/UserService';
 
 function LoginUI(props) {
   let remember = false;
-  const { pushPage } = props;
+  const { pushPage, swipe } = props;
   const [exit, setExit] = useState();
   const navigate = useNavigate();
 
@@ -17,7 +17,7 @@ function LoginUI(props) {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    const result = await UserService.signUp(email, password);
+    const result = await UserService.login(email, password);
     if (result) navigate('/');
   };
 
@@ -41,12 +41,18 @@ function LoginUI(props) {
       setTimeout(() => {
         pushPage(exit);
         navigate(`/${exit}`);
-      }, 690);
+      }, 420);
     }
   }, [exit]);
 
   return (
-    <Flex className={exit ? 'slide-out' : 'slide-in'}>
+    <Flex className={
+      {
+        signup: 'slide-out',
+        reset: 'swipe-away',
+      }[exit] || (swipe && 'swipe-toward') || 'slide-in'
+    }
+    >
       <form className="credentials-form" autoComplete="off" onSubmit={handleLogin}>
         <Input id="email" type="email" placeholder="Email" />
         <Input id="password" type="password" placeholder="Password" />
@@ -64,6 +70,7 @@ function LoginUI(props) {
 }
 LoginUI.propTypes = {
   pushPage: PropTypes.func.isRequired,
+  swipe: PropTypes.bool.isRequired,
 };
 
 export default LoginUI;

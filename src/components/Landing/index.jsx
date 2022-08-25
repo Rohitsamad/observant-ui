@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import UserService from '../../services/UserService';
 import Dashboard from '../Dashboard';
 import Loading from '../Loading';
+import UserService from '../../services/UserService';
 
 function Landing() {
   const [authUser, setAuthUser] = useState(null);
