@@ -1,14 +1,16 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
-  Button, Checkbox, Container, Input,
+  Button, Checkbox, Input, Flex,
 } from '@chakra-ui/react';
 
 import UserService from '../../services/UserService';
 
 function LoginUI(props) {
+  const [exit, setExit] = useState(false);
+  const { pushPage } = props;
   let remember = false;
-  const { renderSignUpPage } = props;
 
   const navigate = useNavigate();
 
@@ -22,8 +24,7 @@ function LoginUI(props) {
 
   const gotoSignUp = async (e) => {
     e.preventDefault();
-    navigate('/signup');
-    renderSignUpPage(true);
+    setExit(true);
   };
 
   const onCheck = async (e) => {
@@ -31,10 +32,18 @@ function LoginUI(props) {
     remember = !remember;
   };
 
+  useEffect(() => {
+    if (exit) {
+      setTimeout(() => {
+        pushPage('signup');
+        navigate('/signup');
+      }, 690);
+    }
+  }, [exit]);
+
   return (
-    <Container className="credentials" p="50px" mb="30px" maxW="100%" centerContent>
-      <h1 className="title-name">Honeyfilter</h1>
-      <form className="credentials-form" onSubmit={handleLogin}>
+    <Flex className={exit ? 'slide-out' : 'slide-in'}>
+      <form className="credentials-form" autoComplete="off" onSubmit={handleLogin}>
         <Input id="email" type="email" placeholder="Email" />
         <Input id="password" type="password" placeholder="Password" />
         <Checkbox id="remember" size="sm" colorScheme="orange" onChange={onCheck}>Remember me</Checkbox>
@@ -46,11 +55,11 @@ function LoginUI(props) {
         {' '}
         <button className="btn-text" type="button" onClick={gotoSignUp}>Sign Up</button>
       </p>
-    </Container>
+    </Flex>
   );
 }
 LoginUI.propTypes = {
-  renderSignUpPage: PropTypes.func.isRequired,
+  pushPage: PropTypes.func.isRequired,
 };
 
 export default LoginUI;

@@ -1,12 +1,13 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Button, Container, Input } from '@chakra-ui/react';
+import { Button, Input, Flex } from '@chakra-ui/react';
 
 import UserService from '../../services/UserService';
 
 function SignUpUI(props) {
-  const { renderSignUpPage } = props;
-
+  const [exit, setExit] = useState(false);
+  const { pushPage } = props;
   const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
@@ -20,29 +21,36 @@ function SignUpUI(props) {
 
   const gotoLogin = async (e) => {
     e.preventDefault();
-    navigate('/login');
-    renderSignUpPage(false);
+    setExit(true);
   };
 
+  useEffect(() => {
+    if (exit) {
+      setTimeout(() => {
+        pushPage('login');
+        navigate('/login');
+      }, 690);
+    }
+  }, [exit]);
+
   return (
-    <Container className="credentials" p="50px" mb="30px" maxW="100%" centerContent>
-      <h1 className="title-name">Honeyfilter</h1>
-      <form className="credentials-form" onSubmit={handleSignUp}>
+    <Flex className={exit ? 'slide-out' : 'slide-in'}>
+      <form className="credentials-form" autoComplete="off" onSubmit={handleSignUp}>
         <Input id="email" type="email" placeholder="Email" />
         <Input id="username" type="text" placeholder="Username" />
         <Input id="password" type="password" placeholder="Password" />
         <Button className="btn-primary" width="100%" type="submit">Sign Up</Button>
       </form>
       <p>
-        Already have account?
+        Already have an account?
         {' '}
         <button className="btn-text" type="button" onClick={gotoLogin}>Login</button>
       </p>
-    </Container>
+    </Flex>
   );
 }
 SignUpUI.propTypes = {
-  renderSignUpPage: PropTypes.func.isRequired,
+  pushPage: PropTypes.func.isRequired,
 };
 
 export default SignUpUI;

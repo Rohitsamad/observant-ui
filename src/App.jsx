@@ -15,8 +15,8 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Landing />} />
         <Route path="dashboard" element={<Dashboard />} />
-        <Route path="login" element={<AuthUI newAuth={false} />} />
-        <Route path="signup" element={<AuthUI newAuth />} />
+        <Route path="login" element={<AuthUI renderPage="login" />} />
+        <Route path="signup" element={<AuthUI renderPage="signup" />} />
       </Routes>
     </BrowserRouter>
   );
