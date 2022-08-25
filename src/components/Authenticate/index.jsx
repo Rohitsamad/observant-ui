@@ -21,6 +21,7 @@ function Authenticate(props) {
   useEffect(() => {
     if (page.length > 1) {
       if (page[1] === 'reset') setSwipe(true);
+      else if (swipe) setSwipe(false);
       setPage(page.slice(0, 1));
     }
   });

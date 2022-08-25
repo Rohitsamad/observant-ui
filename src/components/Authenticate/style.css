@@ -47,7 +47,7 @@ input:-webkit-autofill:active {
   width: 100%;
   gap: 5px;
   animation-name: slide-in;
-  animation-duration: 0.69s;
+  animation-duration: 0.42s;
 }
 
 @keyframes slide-in {
@@ -67,7 +67,7 @@ input:-webkit-autofill:active {
   width: 100%;
   gap: 5px;
   animation-name: slide-out;
-  animation-duration: 0.69s;
+  animation-duration: 0.42s;
   animation-fill-mode: forwards;
 }
 
@@ -88,7 +88,7 @@ input:-webkit-autofill:active {
   width: 100%;
   gap: 5px;
   animation-name: swipe-in;
-  animation-duration: 0.69s;
+  animation-duration: 0.42s;
   animation-fill-mode: forwards;
 }
 
@@ -109,7 +109,7 @@ input:-webkit-autofill:active {
   width: 100%;
   gap: 5px;
   animation-name: swipe-out;
-  animation-duration: 0.69s;
+  animation-duration: 0.42s;
   animation-fill-mode: forwards;
 }
 
@@ -130,7 +130,7 @@ input:-webkit-autofill:active {
   width: 100%;
   gap: 5px;
   animation-name: swipe-away;
-  animation-duration: 0.69s;
+  animation-duration: 0.42s;
   animation-fill-mode: forwards;
 }
 
@@ -151,7 +151,7 @@ input:-webkit-autofill:active {
   width: 100%;
   gap: 5px;
   animation-name: swipe-toward;
-  animation-duration: 0.69s;
+  animation-duration: 0.42s;
   animation-fill-mode: forwards;
 }
 
