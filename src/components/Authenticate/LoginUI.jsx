@@ -41,7 +41,7 @@ function LoginUI(props) {
       setTimeout(() => {
         pushPage(exit);
         navigate(`/${exit}`);
-      }, 420);
+      }, 500);
     }
   }, [exit]);
 

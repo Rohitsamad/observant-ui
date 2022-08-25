@@ -12,6 +12,7 @@ function ResetUI(props) {
   const { pushPage } = props;
   const [exit, setExit] = useState();
   const [reset, setReset] = useState(false);
+  const [flip, setFlip] = useState(false);
   const navigate = useNavigate();
 
   const handleReset = async (e) => {
@@ -23,7 +24,10 @@ function ResetUI(props) {
 
   const gotoLogin = async (e) => {
     e.preventDefault();
-    setExit('login');
+    setFlip(true);
+    setTimeout(() => {
+      setExit('login');
+    }, 250);
   };
 
   const onClose = async (e) => {
@@ -36,13 +40,14 @@ function ResetUI(props) {
       setTimeout(() => {
         pushPage(exit);
         navigate(`/${exit}`);
-      }, 420);
+      }, 500);
     }
   }, [exit]);
 
   return (
     <Flex className={exit ? 'swipe-out' : 'swipe-in'}>
       <IconButton
+        className={flip ? 'flip-icon' : ''}
         alignSelf="flex-start"
         position="relative"
         size="sm"

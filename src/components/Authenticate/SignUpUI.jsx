@@ -29,7 +29,7 @@ function SignUpUI(props) {
       setTimeout(() => {
         pushPage(exit);
         navigate(`/${exit}`);
-      }, 420);
+      }, 500);
     }
   }, [exit]);
 
