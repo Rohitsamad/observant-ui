@@ -61,7 +61,7 @@ function ResetUI(props) {
           ? (
             <Alert status="success" mb="20px">
               <AlertIcon />
-              The link to reset the password has been sent your email.
+              A link has been sent to reset the password.
               <CloseButton
                 alignSelf="flex-start"
                 position="relative"

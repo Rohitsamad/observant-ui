@@ -1,7 +1,4 @@
-import { initializeApp } from 'firebase/app';
 import {
-  getAuth,
-  connectAuthEmulator,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
@@ -11,19 +8,17 @@ import {
   sendPasswordResetEmail,
 } from 'firebase/auth';
 
-import firebaseConfig from '../config/firebase';
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-connectAuthEmulator(auth, 'http://localhost:9099');
+import firebase from '../config/firebase';
+import { createUser, fetchUser } from './ApiService';
 
 const login = async (email, password, remember) => {
   try {
     if (!remember) {
-      await setPersistence(auth, browserSessionPersistence);
+      await setPersistence(firebase, browserSessionPersistence);
     }
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    return userCredential;
+    const { user } = await signInWithEmailAndPassword(firebase, email, password);
+    const result = await fetchUser(user.accessToken, user.uid);
+    return result;
   } catch (error) {
     return null;
   }
@@ -31,20 +26,21 @@ const login = async (email, password, remember) => {
 
 const signUp = async (email, password) => {
   try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    return userCredential;
+    const { user } = await createUserWithEmailAndPassword(firebase, email, password);
+    const result = await createUser(user.accessToken);
+    return result;
   } catch (error) {
     return null;
   }
 };
 
 const logout = async () => {
-  await signOut(auth);
+  await signOut(firebase);
 };
 
 const reset = async (email) => {
   try {
-    await sendPasswordResetEmail(auth, email);
+    await sendPasswordResetEmail(firebase, email);
     return true;
   } catch (error) {
     return null;
@@ -52,12 +48,12 @@ const reset = async (email) => {
 };
 
 const authStatus = async (cb) => {
-  onAuthStateChanged(auth, (user) => {
+  onAuthStateChanged(firebase, (user) => {
     cb(user);
   });
 };
 
-const getUser = () => auth.currentUser;
+const getUser = () => firebase.currentUser;
 
 export default {
   login,
